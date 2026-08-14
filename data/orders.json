@@ -1,0 +1,7 @@
+{
+  "NS1001": { "status": "processing", "item": "Blue Sneakers (Size 10)", "tracking": null, "eta": "2-3 business days" },
+  "NS1002": { "status": "shipped", "item": "Wireless Headphones", "tracking": "1Z999AA10123456784", "eta": "Tomorrow by 8pm" },
+  "NS1003": { "status": "delivered", "item": "Yoga Mat", "tracking": "1Z999AA10123456785", "eta": null },
+  "NS1004": { "status": "processing", "item": "Running Shorts (Size M)", "tracking": null, "eta": "1-2 business days" },
+  "NS1005": { "status": "shipped", "item": "Water Bottle", "tracking": "1Z999AA10123456786", "eta": "2 days" }
+}
