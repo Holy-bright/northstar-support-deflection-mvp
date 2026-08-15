@@ -40,15 +40,17 @@ def _order_status_reply(order_id: str) -> str:
     status = order["status"]
     item = html.escape(order["item"])
     safe_id = html.escape(order_id.upper())
-    eta = html.escape(order['eta'])
     if status == "processing":
+        eta = html.escape(order['eta'])
         return f"Order {safe_id} ({item}) is still being processed. Estimated ship time: {eta}."
     if status == "shipped":
+        eta = html.escape(order['eta'])
         tracking = html.escape(order['tracking'])
         return (
             f"Order {safe_id} ({item}) has shipped! "
             f"Tracking number: {tracking}. ETA: {eta}."
         )
+
     if status == "delivered":
         return f"Order {safe_id} ({item}) was delivered. If you didn't receive it, please contact support."
     return "I found your order but couldn't read its status. Please contact support."
