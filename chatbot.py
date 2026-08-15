@@ -5,6 +5,10 @@ import html
 
 with open(os.path.join(os.path.dirname(__file__), "data", "orders.json")) as f:
     ORDERS = json.load(f)
+ 
+with open(os.path.join(os.path.dirname(__file__), "data", "products.json")) as f:
+    PRODUCTS = json.load(f)
+
 
 GREETINGS = {"hi", "hello", "hey", "help", "start"}
 
@@ -13,10 +17,13 @@ WELCOME = (
     "I can help you with:\n\n"
     "1. 📦 Order status\n"
     "   Enter your order number, e.g. NS1002\n\n"
-    "2. 🔄 Returns & refunds\n"
+        "2. 🔄 Returns & refunds\n"
     "   Ask me about returning an item or getting a refund.\n\n"
+    "3. 🏷️ Stock check\n"
+    "   Ask if a product is in stock, e.g. 'is the yoga mat in stock?'\n\n"
     "What can I help you with?"
 )
+
 
 RETURN_PROMPT = "Sure! Please provide your order number (e.g. NS1002) and I'll check if it's eligible for a return."
 
@@ -79,9 +86,25 @@ def _return_eligibility_reply(order_id: str) -> str:
         f"Order {safe_id} ({item}) is still being processed and hasn't shipped yet.\n"
         "Returns can be started after delivery."
     )
-
-
+ 
+ 
+def _stock_reply(query: str) -> str:
+    q = query.lower()
+    match = next((name for name in PRODUCTS if name in q), None)
+    if not match:
+        return (
+            "Which product would you like me to check? "
+            "Please include the product name, e.g. 'is the yoga mat in stock?'"
+        )
+    stock = PRODUCTS[match]["stock"]
+    safe_name = html.escape(match.title())
+    if stock > 0:
+        return f"Yes, {safe_name} is in stock — {stock} units available."
+    return f"Sorry, {safe_name} is currently out of stock. We'll restock soon — check back later."
+ 
+ 
 def get_reply(user_message: str) -> str:
+
     try:
         msg = user_message.strip().lower()
 
@@ -107,8 +130,13 @@ def get_reply(user_message: str) -> str:
         if any(w in msg for w in ("refund", "money back", "reimburs", "when will i get")):
             return REFUND_INFO
 
+       # Stock check intent
+        if any(w in msg for w in ("stock", "available", "in stock")):
+            return _stock_reply(msg)
+ 
         # Order status intent without order number
         if any(w in msg for w in ("where", "order", "shipped", "shipping", "status", "track", "deliver")):
+
             return (
                 "I can look up your order! "
                 "Please share your order number (e.g. NS1002) and I'll check right away."
@@ -118,8 +146,10 @@ def get_reply(user_message: str) -> str:
             "I'm not sure I understood that. I can help with:\n"
             "• Order status — share your order number like NS1002\n"
             "• Returns — type 'return'\n"
-            "• Refunds — type 'refund'\n\n"
+            "• Refunds — type 'refund'\n"
+            "• Stock — ask 'is <product> in stock?'\n\n"
             "For anything else, please contact our support team."
         )
+
     except Exception:
         return "Something went wrong on my end. Please try again or contact support."
