@@ -3,10 +3,10 @@
 ## Team Members
 | Name | Role | GitHub Handle |
 |------|------|---------------|
-| Member A | Lead Dev / Scrum Master | @member-a |
-| Member B | Frontend + UI | @member-b |
-| Member C | Backend + Data | @member-c |
-| Member D | QA + Docs | @member-d |
+| Holybright mageto | Lead Dev / Scrum Master | @Holy-bright |
+| Mary Macharia | Frontend + UI | @kayjaycloud-source |
+| Daniel Kokonya | Backend + Data | @dnyongesa244-pro |
+| Charles Maina | QA + Docs | @MainaCharles456 |
 
 ---
 
@@ -39,7 +39,7 @@ A task is Done when:
 ## Signatures
 By contributing to this repository, each member agrees to these norms.
 
-- Member A — _signed via first commit_
-- Member B — _signed via first commit_
-- Member C — _signed via first commit_
-- Member D — _signed via first commit_
+- Holybright mageto — _signed via first commit_
+- Mary Macharia — _signed via first commit_
+- Daniel Kokonya — _signed via first commit_
+- Charles Maina — _signed via first commit_
