@@ -45,14 +45,10 @@ branches, commits, testing, documentation, and task ownership.
 ## MVP Scope
 
 ### Supported
-
-1. **Order Status**
-2. **Returns & Refunds**
-
-### Not Currently Supported
-
-3. **Stock Availability**
-
+ 1.**OrderStatus** 
+ 2.**Returns&Refunds** 
+ 3.**StockAvailability**
+  The project supports all three required Northstar support categories.
 The project satisfies the MVP requirement of supporting at least two
 of the three required Northstar support categories.
 

@@ -19,8 +19,6 @@
 ---
 
 ## What's Known-Broken / Out of Scope ⚠️
-
-- **Stock availability** — not implemented in this MVP. Ticket type 3 still requires a human agent.
 - **Live order data** — the prototype uses `data/orders.json` (5 mock orders). Real deployment requires connecting to Northstar's order management API.
 - **Authentication** — there is no customer login. Any user can look up any order ID. Do not go live without adding auth or at minimum a verification step (e.g. order ID + email).
 - **No persistent chat history** — conversations are not stored. Each page refresh starts a new session.
