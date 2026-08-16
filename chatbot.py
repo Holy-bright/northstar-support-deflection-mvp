@@ -89,18 +89,24 @@ def _return_eligibility_reply(order_id: str) -> str:
  
  
 def _stock_reply(query: str) -> str:
-    q = query.lower()
-    match = next((name for name in PRODUCTS if name in q), None)
+    q = re.sub(r"[^a-z0-9]", "", query.lower())
+    match = next(
+        (
+            name for name in PRODUCTS
+            if re.sub(r"[^a-z0-9]", "", name.lower()) in q
+        ),
+        None,
+    )
     if not match:
         return (
-            "Which product would you like me to check? "
-            "Please include the product name, e.g. 'is the yoga mat in stock?'"
+            "WhichProduct would you like me to check? "
+            "Please include the product name, e.g. 'is the yoga mat instock?'"
         )
     stock = PRODUCTS[match]["stock"]
     safe_name = html.escape(match.title())
     if stock > 0:
-        return f"Yes, {safe_name} is in stock — {stock} units available."
-    return f"Sorry, {safe_name} is currently out of stock. We'll restock soon — check back later."
+        return f"Yes, {safe_name} is instock — {stock} units available."
+    return f"Sorry, {safe_name} is currently outofstock. We'll restock soon — check back later."
  
  
 def get_reply(user_message: str) -> str:
