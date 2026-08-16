@@ -12,9 +12,7 @@ tests = [
     ("NS1004 return",               "hasn"),
     ("when will i get my refund",   "5"),
     ("refund",                      "5"),
-    ("",                            "northstar"),
-]
-
+    ("", "northstar"), ("istheyogamatinstock", "instock"), ("isthebluesneakersinstock","outofstock"), ("doyouhavestock", "whichproduct"), ("NS1003", "delivered"), ]
 all_pass = True
 for msg, expected in tests:
     reply = get_reply(msg)
